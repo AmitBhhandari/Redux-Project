@@ -1,10 +1,19 @@
 const redux=require('redux')
  
-const counterReducer=(state={counter:6},action)=>{
-    return{
-        counter:state.counter-1
+const counterReducer=(state={counter:0},action)=>{
+    if(action.type==='incrementBy2'){
+        return{
+            counter:state.counter+2
+        }
     }
-}
+    if(action.type==='decrementBy2'){
+        return{
+            counter:state.counter-2
+        }
+    }
+   
+    }
+   
 
 const store=redux.createStore(counterReducer)
 
@@ -15,8 +24,5 @@ const counterSubscriber=()=>{
  
 store.subscribe(counterSubscriber)
 
-store.dispatch({ type: "decrement" });
-store.dispatch({ type: "decrement" });
-store.dispatch({ type: "decrement" });
-store.dispatch({ type: "decrement" });
-store.dispatch({ type: "decrement" });
+store.dispatch({ type: "incrementBy2" });
+store.dispatch({ type: "decrementBy2" });
